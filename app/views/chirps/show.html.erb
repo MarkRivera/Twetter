@@ -5,5 +5,16 @@
   <%= @chirp.chirp %>
 </p>
 
-<%= link_to 'Edit', edit_chirp_path(@chirp) %> |
-<%= link_to 'Back', chirps_path %>
+<% if current_user == @chirp.user %>
+<%= link_to edit_chirp_path(@chirp) do %>
+  <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+<% end %>
+
+  <%= link_to @chirp, method: :delete, data: { confirm: "Are you sure you want to delete this chirp?"} do %>
+  <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+  <% end %>
+
+<% end %>
+<%= link_to chirps_path do %>
+  <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+<% end %>

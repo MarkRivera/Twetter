@@ -18,6 +18,7 @@ gem 'bulma-rails', '~> 0.7.1'
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise', '~> 4.4', '>= 4.4.3'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

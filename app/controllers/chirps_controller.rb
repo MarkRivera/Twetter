@@ -1,6 +1,7 @@
 class ChirpsController < ApplicationController
   before_action :set_chirp, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :redirect_user, only: [:edit, :destroy]
   # GET /chirps
   # GET /chirps.json
   def index
@@ -15,17 +16,18 @@ class ChirpsController < ApplicationController
 
   # GET /chirps/new
   def new
-    @chirp = Chirp.new
+    @chirp = current_user.chirps.build
   end
 
   # GET /chirps/1/edit
   def edit
+
   end
 
   # POST /chirps
   # POST /chirps.json
   def create
-    @chirp = Chirp.new(chirp_params)
+    @chirp = current_user.chirps.build(chirp_params)
 
     respond_to do |format|
       if @chirp.save
@@ -71,5 +73,12 @@ class ChirpsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def chirp_params
       params.require(:chirp).permit(:chirp)
+    end
+
+    def redirect_user
+      if current_user == @chirp.user
+      else
+        redirect_to root_path
+      end
     end
 end

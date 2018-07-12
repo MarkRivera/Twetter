@@ -20,6 +20,10 @@
   color: white;
 }
 
+.navbar-menu {
+  padding-right: 1em;
+}
+
 //Round images
 
 .image {
@@ -31,4 +35,8 @@
 
 .notification:not(:last-child) {
   margin-bottom: 0;
+}
+
+textarea {
+  resize: none;
 }
